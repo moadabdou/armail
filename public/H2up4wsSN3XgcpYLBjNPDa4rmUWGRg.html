@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html  lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armail app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- moad abdou  for the errazi high  school -->
+    <style>
+        
+
+        input ,  textarea {
+            direction: rtl;
+        }
+    </style>
+</head>
+<body>   
+        <nav class="bb transparent z-depth-0">
+            <div class="nav-wrapper ">
+                <a href="#" class="brand-logo right">              
+                    <i class="material-icons white-text pointer " >settings</i>
+                </a>          
+            </div>
+        </nav>
+            
+
+
+
+
+        <div id="remover" class="modal ">
+            <div class="lighten-2   teal modal-content">
+                هل تريد  مسح  المشاركة ؟ 
+            </div>
+            <div class="modal-footer">
+            <a  class="modal-close remover btn waves-effect waves-green btn-flat">موافق</a>
+            </div>
+        </div>
+        <div id="reply" class="modal ">
+            <div class=" modal-content">
+                <textarea required name = "desc" id="descId" class="materialize-textarea right-align"></textarea>
+                <label class="white-text" for="desc">اكتب ردا على صاحب المشاركة</label>
+            </div>
+            <div class="modal-footer">
+            <a  class="responder  modal-close remover btn waves-effect waves-green btn-flat">موافق</a>
+            </div>
+        </div>
+        <div class="row " style="height: calc(100% - 64px);">
+            <div class="fh col s3 br " style="position: relative;"> 
+                <div class="progress ploader hide sloader">
+                    <div class="indeterminate"></div>
+                </div>
+                <div class="content hide shares" >           
+                    <ul class="collection bn ">
+                    </ul>
+                </div>
+                <div class="nocon nshares" style="height: 100%;">
+                    <div class="nobox">
+                        <img src="assets/telescope.png" alt="لا يوجد بيانات">
+                    </div>
+                </div>
+            </div>
+            <div class="fh pt col s5 xl6 br ovh"  >
+                <div class="nocon nshowinfos" style="height: 100%;" >
+                    <div class="nobox">
+                        <img src="assets/cate.png" alt="لا يوجد بيانات">
+                    </div>
+                </div>
+                <div class="content showinfos hide">
+                    <h5 class="right-align" style="padding: 20px 15px;">معلومات</h5>
+                     <div class="col s12">
+                        
+                    </div>
+                </div>
+                </div> 
+            <div class=" fh col  s4 xl3">
+                <div class="row">
+                    <div class="col s12 bb valign-wrapper jc-r " style="height: 65px;font-size: 1.35em;">
+                    <div class="valign-wrapper bb right-align  jc-r" style="height: 100%;border-color: #1dffd9;
+                    border-width: 2px;
+                    width: 50%;"> المواهب</div>
+                    </div>
+                </div>
+                <div class="row" style="    margin-top: 50px; margin-left: 5px;">
+                    <div class="col s6 h120"> 
+                        <div class="bgc fh pointer arts" data-v="arts">
+                            الرسم
+                        </div>
+                    </div>
+                    <div class="col s6 h120"> 
+                        <div class="bgc fh pointer cooking" data-v="cooking">
+                            الطبخ
+                        </div>
+                    </div><div class="col s6 h120"> 
+                        <div class="bgc fh pointer programming" data-v="programming">
+                            البرمجة
+                        </div>
+                    </div><div class="col s6 h120"> 
+                        <div class="bgc fh pointer writin" data-v="writing">
+                            الكتابة
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>        
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+        <script >
+           
+            const firebaseConfig = {
+              apiKey: "AIzaSyB2Op5HgFiKpQXRvha9ISukd7lKd_GCT6s",
+              authDomain: "armail-c7e85.firebaseapp.com",
+              projectId: "armail-c7e85",
+              storageBucket: "armail-c7e85.appspot.com",
+              messagingSenderId: "895797917084",
+              appId: "1:895797917084:web:d84d471048a2ab7e458459",
+              measurementId: "G-3NVJG5YB6G"
+            };
+            
+            firebase.initializeApp(firebaseConfig)
+            var auth  =  firebase.auth()
+            var  db  =  firebase.firestore()
+            var  storage =  firebase.storage()
+            var  storageRef =  storage.ref()
+
+          </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

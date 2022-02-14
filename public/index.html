@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html  lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>welcom  to  armail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      
+      input ,  textarea {
+          direction: rtl;
+      }
+    </style>
+    <!-- moad abdou  for the errazi high  school -->
+</head>
+<body>
+    <h5 class="right-align" style="    position: absolute; width: 100%;">Ar<span  style="color:#00c9b6;margin-right:20px">Mail</span></h5>
+        <div class="sendit hover hide ">
+          <div class="sendcon center-align" style="padding-top: 70px;">
+           ... جاري ارسال البيانات
+          </div>
+        </div>
+        <div class="fh  view visible">
+
+          <div class="btnw btn-box">
+            <a  class="pointer  sendshare btn waves-effect waves-green white-text">ارسال  مشاركة</a>
+            <a  class="pointer  followshare   btn waves-effect waves-green white-text">تتبع  مشاركة</a>            
+          </div>
+
+        </div>
+        <div class="fh   view sendshare ">
+          <div class="sendcon" style="    margin-top: 130px;">
+          <div class="row">
+          <form class="col s12" id="reg-form" method="GET">
+            <div class="row">
+              <div class="input-field col s12">
+                <input name="name"  id="first_name" type="text" class="validate" required>
+                <label for="first_name">الاسم</label>
+              </div>
+              <div class="input-field col s12">
+                <input name="sname" id="last_name" type="text" class="validate" required>
+                <label for="last_name">الاسم  العائلي</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <select name="talent">
+                  <option value="" disabled selected>اختر نوع موهبتك</option>
+                  <option value="cooking">الطبخ</option>
+                  <option value="programming">البرمجة</option>
+                  <option value="writing">الكتابة</option>
+                  <option value="arts">الرسم</option>
+
+                </select>
+              </div>
+            </div>   
+            <div class="row">
+              <div class="col s12">
+                <div class="notice-box right-align">
+                  <h5>ملاحظة</h5>
+                  <p>اكتب معلومات عن قسمك وعمرك  و عن موهبتك</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea name="desc" id="desc" class="materialize-textarea" class="validate" required></textarea>
+
+                <label for="desc">وصف</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="file-field input-field col  s12">
+                <div class="btn">
+                  <span>صور</span>
+                  <input name="imgs" type="file" multiple />
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" placeholder="اذا اردت ادخل 5 على الاكثر  عن  موهبتك">
+                </div>
+              </div>
+            </div>
+              <div class="input-field right  col s6">
+                <button class="btn right btn-register waves-effect waves-light" type="submit" name="action">ارسال
+                  <i class="material-icons right">done</i>
+                </button>
+              </div>
+            </div>
+          </form>
+          </div>
+        </div>
+        </div>
+        <div class="fh view followshare  ">
+          <div class="sendcon" style="    margin-top: 130px;">
+            <div class="row">
+            <form class="col s12" id="fl-form" method="GET">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input name="id"  id="id" type="text" class="validate" required>
+                  <label for="id">رمز  التتبع</label>
+                </div>       
+              <div class="input-field right  col s6">
+                <button class="btn right btn-register waves-effect waves-light" type="submit" name="action">موافق
+                  <i class="material-icons right">done</i>
+                </button>
+              </div>
+              </div> 
+            </form>
+            </div>
+            <div class="row">
+              <div class="responce col s12 right-align">
+                <p></p>
+              </div>
+            </div>
+        </div>
+      </div>
+      <footer style="color:white ;width: 100%; position: fixed;bottom: 0;  background-color: #000; padding: 15px 0; text-align: center;">
+        moad elabdellaoui @2021
+    </footer>
+
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+        <script >
+           
+            const firebaseConfig = {
+              apiKey: "AIzaSyB2Op5HgFiKpQXRvha9ISukd7lKd_GCT6s",
+              authDomain: "armail-c7e85.firebaseapp.com",
+              projectId: "armail-c7e85",
+              storageBucket: "armail-c7e85.appspot.com",
+              messagingSenderId: "895797917084",
+              appId: "1:895797917084:web:d84d471048a2ab7e458459",
+              measurementId: "G-3NVJG5YB6G"
+            };
+            firebase.initializeApp(firebaseConfig)
+            
+            var  db  =  firebase.firestore()
+            var  storage =  firebase.storage()
+            var  storageRef =  storage.ref()
+            </script>
+    
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+
+    <script>
+
+
+var resizeImage = function (settings) {
+    var file = settings.file;
+    var maxSize = settings.maxSize;
+    var reader = new FileReader();
+    var image = new Image();
+    var canvas = document.createElement('canvas');
+    var dataURItoBlob = function (dataURI) {
+        var bytes = dataURI.split(',')[0].indexOf('base64') >= 0 ?
+            atob(dataURI.split(',')[1]) :
+            unescape(dataURI.split(',')[1]);
+        var mime = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        var max = bytes.length;
+        var ia = new Uint8Array(max);
+        for (var i = 0; i < max; i++)
+            ia[i] = bytes.charCodeAt(i);
+        return new Blob([ia], { type: mime });
+    };
+    var resize = function () {
+        var width = image.width;
+        var height = image.height;
+        if (width > height) {
+            if (width > maxSize) {
+                height *= maxSize / width;
+                width = maxSize;
+            }
+        } else {
+            if (height > maxSize) {
+                width *= maxSize / height;
+                height = maxSize;
+            }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+        var dataUrl = canvas.toDataURL('image/jpeg');
+        return dataURItoBlob(dataUrl);
+    };
+    return new Promise(function (ok, no) {
+        if (!file.type.match(/image.*/)) {
+            no(new Error("Not an image"));
+            return;
+        }
+        reader.onload = function (readerEvent) {
+            image.onload = function () { return ok(resize()); };
+            image.src = readerEvent.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+};
+
+
+function copyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+
+  //
+  // *** This styling is an extra step which is likely not required. ***
+  //
+  // Why is it here? To ensure:
+  // 1. the element is able to have focus and selection.
+  // 2. if the element was to flash render it has minimal visual impact.
+  // 3. less flakyness with selection and copying which **might** occur if
+  //    the textarea element is not visible.
+  //
+  // The likelihood is the element won't even render, not even a
+  // flash, so some of these are just precautions. However in
+  // Internet Explorer the element is visible whilst the popup
+  // box asking the user for permission for the web page to
+  // copy to the clipboard.
+  //
+
+  // Place in the top-left corner of screen regardless of scroll position.
+  textArea.style.position = 'fixed';
+  textArea.style.top = 0;
+  textArea.style.left = 0;
+
+  // Ensure it has a small width and height. Setting to 1px / 1em
+  // doesn't work as this gives a negative w/h on some browsers.
+  textArea.style.width = '2em';
+  textArea.style.height = '2em';
+
+  // We don't need padding, reducing the size if it does flash render.
+  textArea.style.padding = 0;
+
+  // Clean up any borders.
+  textArea.style.border = 'none';
+  textArea.style.outline = 'none';
+  textArea.style.boxShadow = 'none';
+
+  // Avoid flash of the white box if rendered for any reason.
+  textArea.style.background = 'transparent';
+
+
+  textArea.value = text;
+
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+
+  document.body.removeChild(textArea);
+}
+
+
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+         M.FormSelect.init(elems);
+
+        M.updateTextFields();
+        ["sendshare" , "followshare"].forEach(function(v){
+          
+            document.querySelector('a.'+v).onclick  =  function(){
+              document.querySelectorAll('.view').forEach(function(v){
+                v.classList.remove("visible")
+              })
+              document.querySelector(".view."+v).classList.add("visible")
+
+            } 
+        } )
+
+
+
+        var  sForm  =  document.getElementById('reg-form')
+        var sendit  =  document.querySelector('.sendit')
+
+        sForm.onsubmit =  function (e){
+          e.preventDefault()
+
+          if (sForm["name"].value && sForm["sname"].value &&
+            sForm["desc"].value && sForm["talent"].value){
+
+              sendit.classList.remove('hide')
+              let  id =  Date.now().toString()
+              db.collection("email").add({
+                id :  id,
+                name :  sForm["name"].value , 
+                sname : sForm["sname"].value ,
+                type : sForm["talent"].value , 
+                description : sForm["desc"].value
+              }).then (function (){
+                let  files =  sForm["imgs"].files
+                if (files.length ==  0){
+                  sendit.firstElementChild.innerHTML = id + "  تم  تحميل  مشاركتم  ورمز تتبعها  هو   "
+                  sendit.firstElementChild.innerHTML +=  `
+                  <a  style="display: block;margin: 50px auto ;width: 40%;"  data-id="${id}" class="pointer  copyid btn waves-effect waves-green white-text">نسخ</a>
+                  `
+                  sendit.firstElementChild.innerHTML += `
+                  <div class="notice-box right-align">
+                    <h5>مهم  جدا </h5>
+                    <p>
+                      
+                    يجب عليك  الاحتفاظ  برمز  التتبع  من  أجل  معرفة  رأي 
+                    الادارة  بمشاركتكم  وايضا  ربما يطلب منكم  معلومات  اكثر  حول
+                    مهارتكم  او  عنكم  
+                      
+                      </p>
+                  </div>
+                    `
+                  document.querySelector(".copyid").onclick =  function  (e){
+                    e.preventDefault()
+                    copyTextToClipboard(this.getAttribute('data-id'))
+                  }
+                  return false 
+                }
+                sendit.firstElementChild.innerHTML = " جاري ارسال الصور ..." +'<br>'
+                let  len  = files.length <= 5 ? files.length : 5 
+                let  prgrs = len
+                function  complete(){
+                  if (prgrs  <= 0){
+                    sendit.firstElementChild.innerHTML = id + "  تم  تحميل  مشاركتم  ورمز تتبعها  هو   "
+                    
+
+                    sendit.firstElementChild.innerHTML +=  `
+                      <a  style="display: block;margin: 50px auto ;width: 40%;"  data-id="${id}" class="pointer  copyid btn waves-effect waves-green white-text">نسخ</a>
+                      `
+                    sendit.firstElementChild.innerHTML += `
+                    <div class="notice-box right-align">
+                      <h5>مهم  جدا </h5>
+                      <p>
+                        
+                      يجب عليك  الاحتفاظ  برمز  التتبع  من  أجل  معرفة  رأي 
+                      الادارة  بمشاركتكم  وايضا  ربما يطلب منكم  معلومات  اكثر  حول
+                      مهارتكم  او  عنكم  
+                        
+                        </p>
+                    </div>
+                    `
+                    document.querySelector(".copyid").onclick =  function  (e){
+                      e.preventDefault()
+                      copyTextToClipboard(this.getAttribute('data-id'))
+                    }
+                  }
+                }
+                for(let  i  =  0 ;  i < len ;  i++){
+                  resizeImage({
+                      file: files[i],
+                      maxSize:1200
+                  }).then(function (resizedImage) {
+                      prgrs -- ;
+                      storageRef.child("usersshares/"+id+'_'+i+".jpg")
+                        .put(resizedImage , {contentType: 'image/jpeg'})
+                        .then(function(){
+                          if (prgrs <= 0){
+                            complete()
+                          }
+                        })
+                        .catch(function(e){
+                          if (e.code == 'storage/unknown' ) {
+                            sendit.firstElementChild.innerHTML += "فشل  رفع احد  الصور بسبب  مشكل ما " + "<br>"
+                          }
+                          if (prgrs <= 0){
+                            complete()
+                          }
+                        })
+                  }).catch(function (err) {
+                      prgrs -- ;
+                      sendit.firstElementChild.innerHTML += "تم  تحديد  ملف غير صالح  لن  يتم  رفعه"+"<br>"
+                      if (prgrs <= 0){
+                            complete()
+                          }
+                  })
+                }
+
+              }).catch(function(e){
+                 alert("فشل الاتصال بالسرفر حاول لاحقا")
+              })
+
+          }
+        }
+        var  fForm  =  document.getElementById('fl-form')
+        var resp  =  document.querySelector('.responce').firstElementChild
+
+      fForm.onsubmit  = function(e){
+        e.preventDefault()
+        sendit.classList.remove('hide')
+        sendit.firstElementChild.innerHTML =  "جاري تفحص علبة  الردود ... "
+        db.collection("responces").where("id" ,  "==" , fForm["id"].value)
+          .get().then(function(sp){
+            sendit.classList.add('hide')
+            if (sp.size ==  0) {
+              alert("لم  يتم  الرد  على مشاركتم  الى  الان ")
+            }
+            sp.forEach(function(s){
+              resp.innerText = s.data().msg
+            })
+          })
+      }
+
+      })
+       
+    </script>
+
+
+</body>
+</html>

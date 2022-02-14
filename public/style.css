@@ -1,0 +1,224 @@
+body,html {
+    height: 100vh;
+}
+* {
+    color: white;
+    font-family: 'Lemonada', cursive;
+}
+body {
+    background: rgb(14 17 42);
+    background: linear-gradient(27deg, rgb(14 17 42) 0%, rgb(0 0 0) 51%, rgb(2 56 66) 100%);}
+
+
+
+.bb {
+    border-bottom:1px solid #8dc5b573 ;
+}
+.bl {
+    border-left:1px solid #8dc5b573 ;
+}
+.br {
+    border-right:1px solid #8dc5b573 ;
+
+}
+.ovh {
+    overflow: hidden;
+}
+.bn  {
+    border:none;
+    padding-top: 60px !important;
+}
+.clear {
+    clear: both;
+}
+.pt {
+    padding-right: 0px !important;
+    padding-top: 40px !important;
+}
+.pr {
+    padding: 0 2px !important;
+    margin-bottom: 5px;
+}
+.sf {
+    font-size: 13px;
+}
+.pointer {
+    cursor: pointer;
+}
+.active {
+    background-color: #ffffff14 !important;
+}
+.mnh {
+    min-height: 50px !important;
+}
+.arts {
+    background-image: url(./assets/arts.jpg);
+}
+.cooking {
+    background-image: url(./assets/cooking.jpg);
+}
+.programming {
+    background-image: url(./assets/programming.jpg);
+}
+.writin {
+    background-image: url(./assets/writin.jpg);
+}
+.bgc {
+    font-size: 24px;
+    text-align: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-right: 10px;
+    padding-top: 70px;
+}
+.description{
+    padding: 15px 0;
+    max-width: 900px;
+    padding-right: 10px;
+    font-size: 12px;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,0) 23%, rgba(255,255,255,0.23012955182072825) 100%);    
+}
+
+.fh  {
+    height: 100%;
+    overflow-y: auto;
+}
+.h120 {
+    height: 120px;
+    margin-bottom: 15px;
+    padding: 0 2px !important;
+}
+.jc-r{
+    -webkit-justify-content :  right;
+    justify-content: right;
+}
+
+
+.h120 .active {
+    border: 1px solid #1dffd9;
+}
+
+#settings ,  #reply  {
+    background-color: #0f7e6c;
+}
+#settings {
+    width: 500px;
+}
+#settings .input-field>label , 
+#reply .input-field>label {
+
+    color: #FFF;
+}
+#settings .input-field>input,
+#reply .input-field>textarea  {
+ 
+    border-bottom: 1px solid #ffffff;
+}
+#settings .modal-content {
+    padding: 25px 40px;
+}
+
+.reply  {
+    margin: 20px;
+}
+.reply i {
+    background-color: #1dffd9;
+    width: 42px;
+    height: 42px;
+    text-align: center;
+    line-height: 42px;
+}
+.btnw {
+    
+    width: 330px;
+}
+.btn-box {
+    transform: translate(-50%, -50%);
+    position: relative;
+    left: 50%;
+    top: 50%;
+}
+.btn-box .btn {
+    margin: 0 15px;
+}
+.hover {
+    position: fixed ; 
+    left: 0; 
+    top :  0 ; 
+    width:100%; 
+    height: 100%;
+    z-index: 99;
+    background-color: rgba(0, 0,  0, 0.7);
+}
+.hover.hide {
+    display: none;
+
+}
+.nobox{
+    margin: auto;
+    width: 170px;
+    height: 170px;
+    overflow: hidden;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.nobox img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+.boxinfo {
+    margin-top: 50px;
+}
+.loader {
+    width: 500px;
+    margin: auto;
+    margin-top: 4em;
+}
+.hide ,  .view {
+    display: none;
+}
+.view.visible {
+    display: block;
+}
+.logintab {
+    width: 450px;
+    height: 500px;
+    background: #00483e57;
+    /* border: 1px solid #00c9b6; */
+    border-radius: 15px;
+    padding: 40px 10px;
+    width: 480px;
+    height: 280px;
+}
+.sendcon {
+    max-width: 450px ;
+    margin: auto;
+    margin-bottom: 60px;
+}
+.sendcon .input-field input,
+.sendcon .input-field textarea{
+    text-align: right !important;
+}
+
+.view {
+    padding: 0 10px;
+}
+.ploader{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.notice-box {
+    border: 1px solid #edfd00;
+    padding: 5px 10px;
+}
+
+
+
+
+
